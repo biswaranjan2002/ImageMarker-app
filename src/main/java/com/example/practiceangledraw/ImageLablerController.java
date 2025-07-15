@@ -1,12 +1,13 @@
 package com.example.practiceangledraw;
 
 import com.example.practiceangledraw.AngleDrawer.AngleDrawer;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -16,7 +17,7 @@ public class ImageLablerController {
     //=======================
     //-----initializing panes and angledrawer
     @FXML
-    public Pane canvasPane;
+    public StackPane canvasPane;
     private AngleDrawer drawer;
 
     //=============================================
@@ -138,6 +139,13 @@ public class ImageLablerController {
 
     @FXML
     public void initialize() {
+        Image defaultImage = new Image(getClass().getResource("/Images/default.jpg").toExternalForm());
+        imageView.setImage(defaultImage);
+        imageView.setPreserveRatio(true);
+
+        // Wait for layout to be calculated
+        Platform.runLater(() -> centerImage());
+
         if (imageView == null || canvasPane == null) {
             System.out.println("FXML loading issue: imageView or canvasPane is null");
             return;
@@ -161,6 +169,18 @@ public class ImageLablerController {
         setupButtonHoverEffects(clearBtn);
         setupButtonHoverEffects(hideBtn);
     }
+
+    private void centerImage() {
+        double paneWidth = canvasPane.getWidth();
+        double paneHeight = canvasPane.getHeight();
+
+        double imageWidth = imageView.getBoundsInParent().getWidth();
+        double imageHeight = imageView.getBoundsInParent().getHeight();
+
+        imageView.setLayoutX((paneWidth - imageWidth) / 2);
+        imageView.setLayoutY((paneHeight - imageHeight) / 2);
+    }
+
 
     private void setupButtonHoverEffects(Button button) {
         // Set cursor to HAND on hover

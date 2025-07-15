@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Paint;
 
 public class AngleDrawer extends Pane {
     private boolean selectionMode = false;
@@ -118,6 +120,7 @@ public class AngleDrawer extends Pane {
                     set.line2,
                     set.angleText
             );
+
         }
 
         clickCount++;
@@ -159,19 +162,30 @@ public class AngleDrawer extends Pane {
             angleText.setFont(Font.font(16));
             angleText.setFill(Color.web("#EC641C"));
 
+
+
             registerClickHandlers(); // 👈 Important for selection
         }
 
         public void setSelected(boolean selected) {
             this.selected = selected;
-            Color color = selected ? Color.YELLOWGREEN : Color.web("#EC641C");
+
+            Color color = selected ? Color.LIGHTBLUE : Color.web("#EC641C");
+            double strokeWidth = selected ? 5.0 : 3.0;
+
             p1Circle.setFill(color);
             p2Circle.setFill(color);
             p3Circle.setFill(color);
+
             line1.setStroke(color);
+            line1.setStrokeWidth(strokeWidth);
+
             line2.setStroke(color);
+            line2.setStrokeWidth(strokeWidth);
+
             angleText.setFill(color);
         }
+
 
         private void registerClickHandlers() {
             EventHandler<MouseEvent> handler = e -> {
@@ -290,16 +304,21 @@ public class AngleDrawer extends Pane {
     }
 
     public void hideAll() {
-        for (javafx.scene.Node node : getChildren()) {
+        for (Node node : getChildren()) {
             node.setVisible(false);
         }
+
     }
 
+
+
     public void showAll() {
-        for (javafx.scene.Node node : getChildren()) {
+        for (Node node : getChildren()) {
             node.setVisible(true);
         }
+
     }
+
 
     public boolean isCurrentlyHidden() {
         // Check any one node to determine if hidden

@@ -15,11 +15,11 @@
       <ViewBox>
          <HBox maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0" prefWidth="1920.0">
             <children>
-               <Pane fx:id="canvasPane" maxHeight="1080.0" maxWidth="1080.0" minHeight="1080.0" minWidth="1080.0" prefHeight="1080.0" prefWidth="1080.0" style="-fx-background-color: black;">
+               <StackPane fx:id="canvasPane" maxHeight="1080.0" maxWidth="1080.0" minHeight="1080.0" minWidth="1080.0" prefHeight="1080.0" prefWidth="1080.0" style="-fx-background-color: black;">
                   <children>
                      <ImageView fx:id="imageView" fitHeight="1080.0" fitWidth="1080.0" pickOnBounds="true" preserveRatio="true" />
                   </children>
-               </Pane>
+               </StackPane>
                <VBox maxHeight="1080.0" maxWidth="840.0" minHeight="1080.0" minWidth="840.0" prefHeight="1080.0" prefWidth="840.0">
                   <children>
                      <HBox alignment="CENTER" maxHeight="250.0" maxWidth="840.0" minHeight="250.0" minWidth="840.0" prefHeight="250.0" prefWidth="840.0" style="-fx-background-color: #faf3de;">
